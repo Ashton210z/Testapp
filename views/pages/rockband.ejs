@@ -1,0 +1,53 @@
+<!-- views/pages/index.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ../partials/head %>
+</head>
+<body class="container">
+
+    <header>
+        <% include ../partials/header %>
+    </header>
+
+    <main>
+        <div class="jumbotron">
+            <h1>This'll be the start to songs and things</h1>
+            <p>Oh yes.</p>
+        </div>
+    </main>
+	
+	<table class="table table-striped table-bordered">
+		<tr>
+			<th>Name</th>
+			<th>Song preferences</th>
+			<th>Save settings</th>
+		</tr>
+		<% rows.forEach(function(work) { %>
+		<% 
+			function checkBoxes(checking) {
+				if (checking == 1) {
+					return "checked" } else { return "" }
+				}
+			var liked = checkBoxes(work.likedsong);
+			var practice = checkBoxes(work.goodpractice);
+		%>
+			<tr>
+				<td class="vert-align"><%= work.name %> </td>
+				<td> <div class="checkbox">
+					<label class="checkbox-inline"><input type="checkbox" value="" <%= liked %>>Liked Song</label>
+					<label class="checkbox-inline"><input type="checkbox" value="" <%= practice %>>Good Practice</label>
+				</div> </td>	
+				<td class="vert-align"><button type="button" class="btn btn-primary">Save</button> </td>
+			</tr>
+		<% }); %>
+	</table>
+
+	<p>
+    <footer>
+        <% include ../partials/footer %>
+    </footer>
+
+</body>
+</html>
